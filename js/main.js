@@ -11,8 +11,8 @@ let showMenu = false;
 
 menuBtn.addEventListener('click', toggleMenu);
 
-function toggleMenu(){
-    if(!showMenu){
+function toggleMenu() {
+    if (!showMenu) {
         menuBtn.classList.add('close');
         menu.classList.add('show');
         menuNav.classList.add('show');
@@ -21,7 +21,7 @@ function toggleMenu(){
 
         //Set Menu State
         showMenu = true;
-    }else{
+    } else {
         menuBtn.classList.remove('close');
         menu.classList.remove('show');
         menuNav.classList.remove('show');
@@ -38,7 +38,7 @@ function toggleMenu(){
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["Web Developer", "Programmer", "Hacker", "Tubist", "Soccer Player", "Swimmer"]; //Words that are typed onto animation
+const textArray = ["Self-Taught", "Web Developer", "Programmer", "Hacker", "Self-Driven"]; //Words that are typed onto animation
 const typingSpeed = 150;
 const erasingSpeed = 100;
 const newTextDelay = 2000; // Delay between current and next text
@@ -46,33 +46,31 @@ let textArrayIndex = 0; // textArray index
 let charIndex = 0; // character index
 
 function type() {
-  if (charIndex < textArray[textArrayIndex].length) {
-    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(type, typingSpeed);
-  } 
-  else {
-    cursorSpan.classList.remove("typing");
-  	setTimeout(erase, newTextDelay);
-  }
+    if (charIndex < textArray[textArrayIndex].length) {
+        if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingSpeed);
+    } else {
+        cursorSpan.classList.remove("typing");
+        setTimeout(erase, newTextDelay);
+    }
 }
 
 function erase() {
-	if (charIndex > 0) {
-    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-    charIndex--;
-    setTimeout(erase, erasingSpeed);
-  } 
-  else {
-    cursorSpan.classList.remove("typing");
-    textArrayIndex++;
-    if(textArrayIndex>=textArray.length) textArrayIndex=0;
-    setTimeout(type, typingSpeed + 1100);
-  }
+    if (charIndex > 0) {
+        if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingSpeed);
+    } else {
+        cursorSpan.classList.remove("typing");
+        textArrayIndex++;
+        if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+        setTimeout(type, typingSpeed + 1100);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
-  setTimeout(type, newTextDelay + 250);
+    setTimeout(type, newTextDelay + 250);
 });
